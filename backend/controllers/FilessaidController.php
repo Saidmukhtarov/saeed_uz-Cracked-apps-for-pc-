@@ -62,7 +62,7 @@ class FilessaidController extends Controller
     public function actionDownload($id)
     {
         $model = $this->findModel($id);
-        $file = Yii::getAlias('@backend/web/os_files/12 01 2021-os_file.ico');
+        $file = Yii::getAlias('@backend/web/os_files/' . $model->os_file);
         return Yii::$app->response->sendFile($file); 
     }
 
