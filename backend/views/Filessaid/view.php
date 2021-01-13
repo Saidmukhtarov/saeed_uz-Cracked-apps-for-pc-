@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Download', ['download', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -33,11 +34,31 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description:ntext',
             'os_file',
-            'status',
-            'created_at',
+            [
+                'label' => 'Статус:',
+                'value' => function($model){
+                    if($model->status == 0){
+                        return 'Неактивен';
+                    }
+                    elseif ($model->status == 1){
+                        return 'Активен';
+                    }
+                    else{
+                        return 'Неизвестно';
+                    }
+                }
+            ],
+            // 'status',
             'created_by',
-            'updated_at',
+            [
+                'label' => 'Добавлено в:',
+                'value' => date('d/M/Y H:i:s', $model->created_at),
+            ],
             'updated_by',
+            [
+                'label' => 'Обновлено в:',
+                'value' => date('d/M/Y H:i:s', $model->updated_at),
+            ],
         ],
     ]) ?>
 

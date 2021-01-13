@@ -7,14 +7,15 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <img style="width:200px;" src="assets/img/favicon.png">
+        <h1>Добро пожаловать <?= Yii::$app->user->identity->username ?>.</h1><h1>Админ панель SAEED_UZ</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <!-- <p class="lead">You have successfully created your Yii-powered application.</p> -->
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><a class="btn btn-lg btn-success" target="_blank" href="http://frontend.test">Перейти на сайт</a></p>
     </div>
 
-    <div class="body-content">
+    <!-- <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4">
@@ -49,5 +50,5 @@ $this->title = 'My Yii Application';
             </div>
         </div>
 
-    </div>
+    </div> -->
 </div>

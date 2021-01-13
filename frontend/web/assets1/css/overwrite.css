@@ -985,17 +985,17 @@ header .navbar-primary .navbar-inner nav li.blob  {
 }
 
 .btn-success {
-  color: #ffffff;
+  color: #000000;
   text-shadow: none;
-  background-color: #337e0a;
-  *background-color: #337e0a;
-  background-image: -moz-linear-gradient(top, #337e0a, #337e0a);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#337e0a), to(#337e0a));
-  background-image: -webkit-linear-gradient(top, #337e0a, #337e0a);
-  background-image: -o-linear-gradient(top, #337e0a, #337e0a);
-  background-image: linear-gradient(to bottom, #337e0a, #337e0a);
+  background-color: #ceeaff;
+  *background-color: #ceeaff;
+  background-image: -moz-linear-gradient(top, #ceeaff, #ceeaff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ceeaff), to(#ceeaff));
+  background-image: -webkit-linear-gradient(top, #ceeaff, #ceeaff);
+  background-image: -o-linear-gradient(top, #ceeaff, #ceeaff);
+  background-image: linear-gradient(to bottom, #ceeaff, #ceeaff);
   background-repeat: repeat-x;
-  border-color: #337e0a #337e0a #337e0a;
+  border-color: #ceeaff #ceeaff #ceeaff;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337e0a', endColorstr='#ff337e0a', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);

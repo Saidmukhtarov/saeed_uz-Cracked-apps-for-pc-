@@ -42,7 +42,8 @@ footer .nav-list li a:hover,footer ul.regular li a:hover  {
 /* sequence slider */
 
 .info  h2{
-	background: #94c045;
+	background: #ceeaff;
+  color: #666;
 }
 
 /* fontawesome icons */
@@ -58,11 +59,11 @@ footer .nav-list li a:hover,footer ul.regular li a:hover  {
 
 /* header */
 .navbar .nav li.active {
-	border-top:5px solid #94c045;	
+	border-top:5px solid #ceeaff;	
 
 }
 .navbar .nav li.active a {
-	color:#94c045;	
+	color:#8a8a8a;	
 }
 
 .navbar .nav li ul.dropdown-menu li a:hover, .navbar .nav li.active ul.dropdown-menu li a:hover  {

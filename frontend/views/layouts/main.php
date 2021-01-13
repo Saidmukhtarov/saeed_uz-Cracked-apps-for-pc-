@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
@@ -14,9 +15,9 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= Yii::$app->language ?>">
 <head>
-  <meta charset="utf-8-general-ci">
+  <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
@@ -33,7 +34,6 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <!-- ======= Header ======= -->
-
 <header>
     <!-- Navbar
     ================================================== -->
@@ -47,8 +47,8 @@ AppAsset::register($this);
           <div class="navigation">
             <nav>
               <ul class="nav topnav">
-                <li class="dropdown active">
-                  <a href="index.html">Home</a>
+                <li class="dropdown">
+                  <a href="/">Home</a>
                 </li>
                 <li class="dropdown">
                   <a href="#">Features</a>
@@ -106,7 +106,6 @@ AppAsset::register($this);
       </div>
     </div>
   </header>
-
  <!-- End Header -->
 
 
@@ -146,8 +145,8 @@ AppAsset::register($this);
         <div class="span4">
           <div class="widget">
             <!-- logo -->
-            <a class="brand logo" href="index.html">
-              <img src="assets1/img/logo-dark.png" alt="">
+            <a class="brand logo" href="/">
+              <img style="width: 70px;" src="assets1/ico/favicon.png" alt="">
             </a>
             <!-- end logo -->
             <address>
@@ -165,19 +164,13 @@ AppAsset::register($this);
         <div class="row">
           <div class="span6">
             <p>
-              &copy; Serenity - All right reserved
+              &copy; Saeed_UZ <?= date('Y') ?>
             </p>
           </div>
           <div class="span6">
             <div class="credits">
-              <!--
-                All the links in the footer should remain intact.
-                You can delete the links only if you purchased the pro version.
-                Licensing information: https://bootstrapmade.com/license/
-                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Serenity
-              -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
+              @Saidmukhtarov_Official  
+           </div>
           </div>
         </div>
       </div>
