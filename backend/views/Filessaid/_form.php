@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'os_file')->fileInput()->label('Софт для компа') ?>
 
+    <?= $form->field($model, 'image')->fileInput()->label('Рисунок софта') ?>
+
     <?= $form->field($model, 'status')->checkbox()->label('Статус') ?>
 
     <div class="form-group">

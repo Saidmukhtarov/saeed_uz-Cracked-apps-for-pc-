@@ -257,4 +257,8 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+    // public function actionGuarantee()
+    // {
+    //     return $this->render('guarantee');
+    // }
 }

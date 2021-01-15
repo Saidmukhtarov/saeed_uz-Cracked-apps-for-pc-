@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Files Said', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить софт', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -24,13 +24,44 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'name',
-            'description:ntext',
+            //'description:ntext',
+            [
+                'label' => 'Описания софта',
+                'value' => function($model){
+                    $description = substr($model->description, 0, 20) . '...';
+                    return $description;
+                }
+
+
+            ],
             'os_file',
-            'status',
+            [
+                'attribute' => 'Изображение софта',
+                'format' => 'raw',
+                'value' => function($model){
+                    $img = "<img src='/img/$model->image' style='max-width: 100%;'>";
+                    return $img;
+                }
+            ],
+            [
+                'label' => 'Статус:',
+                'value' => function($model){
+                    if($model->status == 0){
+                        return 'Неактивен';
+                    }
+                    elseif ($model->status == 1){
+                        return 'Активен';
+                    }
+                    else{
+                        return 'Неизвестно';
+                    }
+                }
+            ],
+            // 'status',
             //'created_at',
             //'created_by',
             //'updated_at',

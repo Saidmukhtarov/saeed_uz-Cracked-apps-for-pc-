@@ -16,12 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Download', ['download', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
+        <?= Html::a(' Редактировать', ['update', 'id' => $model->id], ['class' => 'fa fa-edit btn btn-primary']) ?>
+        <?= Html::a(' Скачать ', ['download', 'id' => $model->id], ['class' => 'fa fa-download btn btn-success']) ?>
+        <?= Html::a(' Удалить', ['delete', 'id' => $model->id], [
+            'class' => 'fa fa-trash btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -34,6 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description:ntext',
             'os_file',
+            [
+                'label' => 'Изображение',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $image = "<img src='/img/$model->image' style='max-width: 100%;width:15%;'>";
+                    return $image;
+                }
+            ],
             [
                 'label' => 'Статус:',
                 'value' => function($model){

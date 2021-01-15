@@ -1,6 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
+use frontend\widgets\osfilesWidget;
+use yii\helpers\Url;
+
 
 $this->title = 'Saeed_UZ';
 ?>
@@ -27,11 +30,11 @@ $this->title = 'Saeed_UZ';
                     <div class="info animate-in">
                       <h2>Saeed_UZ</h2>
                       <br>
-                      <h3>Всегда на шаг впереди</h3>
+                      <h3>От Света исходит Тьма, а от Тьмы - Свет!</h3>
                       <p>
                         Цсссс про версии каждого приложения
                       </p>
-                      <a class="btn btn-success" href="#">Подробнее &raquo;</a>
+                      <a  class="btn btn-success" href="<?= Url::to(['filessaid/index']) ?>">Подробнее &raquo;</a>
                     </div>
                     <img class="slider_img animate-in" src="assets1/ico/favicon.png" alt="">
                   </li>
@@ -73,40 +76,16 @@ $this->title = 'Saeed_UZ';
 
   <section id="maincontent">
     <div class="container">
-      <marquee behavior="scroll" direction="left"><b style="font-size: 30px; color: red;">SAEED_UZ </b><b style="font-size: 30px; color: blue;">SAEED_UZ </b><b style="font-size: 30px; color: orange;">SAEED_UZ </b><b style="font-size: 30px; color: green;">SAEED_UZ </b><b style="font-size: 30px; color: black;">SAEED_UZ </b><b style="font-size: 30px; color: grey;">SAEED_UZ </b><b style="font-size: 30px; color: зштл;">SAEED_UZ </b><b style="font-size: 30px; color: purple;">SAEED_UZ </b><b style="font-size: 30px; color: darkred;">SAEED_UZ </b><b style="font-size: 30px; color: yellow;">SAEED_UZ </b><b style="font-size: 30px; color: darkgreen;">SAEED_UZ </b></marquee>
+      <marquee behavior="scroll" direction="left"><b style="font-size: 30px; color: red;">Advertising </b><b style="font-size: 30px; color: blue;">Advertising </b><b style="font-size: 30px; color: orange;">Advertising </b><b style="font-size: 30px; color: green;">Advertising </b><b style="font-size: 30px; color: black;">Advertising </b><b style="font-size: 30px; color: grey;">Advertising </b><b style="font-size: 30px; color: зштл;">Advertising </b><b style="font-size: 30px; color: purple;">Advertising </b><b style="font-size: 30px; color: darkred;">Advertising </b><b style="font-size: 30px; color: yellow;">Advertising </b><b style="font-size: 30px; color: darkgreen;">Advertising </b></marquee>
       <div class="row">
         <div class="home-posts">
           <div class="span12">
-            <h3>Последние софты</h3>
+            <h3 style="padding-top: 15px;">Последние софты для компа</h3>
           </div>
+<!--  -->
+              <?= osfilesWidget::widget(); ?>
 
-          <div class="span3">
-            <div class="post-image">
-              <a href="post_right_sidebar.html">
-          <img src="assets1/img/dummies/blog1.jpg" alt="">
-          </a>
-            </div>
-            <div class="entry-meta">
-              <a href="#"><i class="icon-square icon-48 icon-picture left"></i></a>
-              <span class="date">Sep 17 <br>
-          2013</span>
-            </div>
-            <!-- end .entry-meta -->
-            <div class="entry-body">
-              <a href="post_right_sidebar.html">
-                <h5 class="title">This is a standard post</h5>
-              </a>
-              <p>
-                Lorem ipsum dolor sit amet nec, consectetuer adipiscing elit. Aenean commodo ligula eget dolor aenean massa.
-              </p>
-              <div style="margin-bottom: 20px;">
-                <a class="btn btn-success pull-right" href="#">Подробнее</a>
-              </div>            
-            </div>
-            <!-- end .entry-body -->
-            <div class="clear">
-            </div>
-          </div>
+          <!--  -->
         </div>
       </div>
     </div>

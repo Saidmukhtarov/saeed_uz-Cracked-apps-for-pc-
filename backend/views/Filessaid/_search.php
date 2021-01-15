@@ -23,6 +23,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'os_file') ?>
 
+    <?= $form->field($model, 'image') ?>
+
     <?= $form->field($model, 'status') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>

@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $os_file
+ * @property string $image
  * @property int $status
  * @property string $created_at
  * @property string $created_by
@@ -37,7 +38,7 @@ class FilesSaid extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'os_file', 'created_by', 'updated_by'], 'string', 'max' => 255],
+            [['name', 'os_file', 'image', 'created_by', 'updated_by'], 'string', 'max' => 255],
         ];
     }
 
@@ -51,6 +52,7 @@ class FilesSaid extends \yii\db\ActiveRecord
             'name' => 'Name',
             'description' => 'Description',
             'os_file' => 'Os File',
+            'image' => 'Image',
             'status' => 'Status',
             'created_at' => 'Created At',
             'created_by' => 'Created By',

@@ -313,10 +313,9 @@ section#subintro {
 
 .home-posts .entry-meta {
   float: left;
-  font-style: italic;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.8px;
   line-height: 1.3;
-  text-align: center;
+  text-align: center !important;
   width: 48px;
 }
 

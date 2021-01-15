@@ -21,8 +21,8 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-      <link rel="shortcut icon" href="assets/img/favicon.png">
-    <title><?= Html::encode($this->title) ?></title>
+      <link rel="shortcut icon" href="../../assets/img/favicon.png">
+    <title><?= 'Админ панель SAEED_UZ' ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -39,7 +39,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Главная', 'url' => ['/site/index']],
-        ['label' => 'Добавить софт', 'url' => ['/filessaid/index']],
+        ['label' => 'Софты', 'url' => ['/filessaid/index']],
 
     ];
     if (Yii::$app->user->isGuest) {
@@ -72,9 +72,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <b class="pull-left">&copy; Saeed_UZ </b>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <b class="pull-right">Сегодняшняя дата: <?= date('d.M.Y') ?></b>
     </div>
 </footer>
 

@@ -100,7 +100,7 @@ public function actionCreate()
     {
         $model = new FilesSaid();
 
-
+        
         if ($model->load(Yii::$app->request->post())) {
             $time = time();
             $user = Yii::$app->user->identity->username;
@@ -114,11 +114,11 @@ public function actionCreate()
             // $model->old_file = "none";
 
             function uploadFile($os_fileFieldName,$dbFieldName,$model){
-                $time = date('d.M.Y');
+                $time = time();
                 $osfile = UploadedFile::getInstance($model,$os_fileFieldName);
                 if(!empty($osfile)) {
                     if (!$osfile->saveAs('os_files/' . $time . '-' . $os_fileFieldName . '.' . $osfile->extension)) {
-                        var_dump($img->saveAs('os_files/' . $time . '-' . $os_fileFieldName . '.' . $osfile->extension));
+                        var_dump($osfile->saveAs('os_files/' . $time . '-' . $os_fileFieldName . '.' . $osfile->extension));
                     }
                     $model->$dbFieldName = $time . '-' . $os_fileFieldName . '.' . $osfile->extension;
                 }
@@ -126,7 +126,22 @@ public function actionCreate()
                 //     $model->$dbFieldName = 'default.jpg';
                 // }
             }
+
+            function uploadImage($imageFieldName,$dbFieldName,$model){
+                $time = time();
+                $image = UploadedFile::getInstance($model,$imageFieldName);
+                if(!empty($image)) {
+                    if (!$image->saveAs('img/' . $time . '-' . $imageFieldName . '.' . $image->extension)) {
+                        var_dump($image->saveAs('img/' . $time . '-' . $imageFieldName . '.' . $image->extension));
+                    }
+                    $model->$dbFieldName = $time . '-' . $imageFieldName . '.' . $image->extension;
+                }
+                 else{
+                     $model->$dbFieldName = 'default.png';
+                 }
+            }
             uploadFile('os_file','os_file',$model);
+            uploadImage('image', 'image', $model);
 
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);

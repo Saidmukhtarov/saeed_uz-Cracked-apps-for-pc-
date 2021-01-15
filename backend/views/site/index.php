@@ -7,7 +7,7 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron">
-        <img style="width:200px;" src="assets/img/favicon.png">
+        <img style="width:200px;" src="../../assets/img/favicon.png">
         <h1>Добро пожаловать <?= Yii::$app->user->identity->username ?>.</h1><h1>Админ панель SAEED_UZ</h1>
 
         <!-- <p class="lead">You have successfully created your Yii-powered application.</p> -->
