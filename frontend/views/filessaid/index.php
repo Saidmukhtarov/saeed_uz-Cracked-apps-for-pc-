@@ -23,9 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
           <div class="span12">
             <div class="centered">
               <h3 style="color: #666;">Все софты</h3>
-              <p style="color: #666;">
-                Lorem ipsum dolor sit amet, modus salutatus honestatis ex mea. Sit cu probo putant. Nam ne impedit atomorum.
-              </p>
             </div>
           </div>
         </div>

@@ -40,6 +40,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Главная', 'url' => ['/site/index']],
         ['label' => 'Софты', 'url' => ['/filessaid/index']],
+        ['label' => 'Обои', 'url' => ['/wallpapers/index']],
 
     ];
     if (Yii::$app->user->isGuest) {

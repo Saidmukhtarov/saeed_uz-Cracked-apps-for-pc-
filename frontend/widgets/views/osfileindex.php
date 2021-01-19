@@ -17,7 +17,7 @@ use yii\helpers\Url;
     </div>
     <!-- end .entry-meta -->
     <div class="entry-body">
-        <a href="#">
+        <a href="<?= Url::to(['filessaid/view', 'id' => $osfile->id]) ?>">
             <h4 class="title" style="font-weight: bolder; word-break: break-all;"><?= mb_substr($osfile->name, 0, 20) . ' ...'; ?></h4>
         </a>
         <p>
