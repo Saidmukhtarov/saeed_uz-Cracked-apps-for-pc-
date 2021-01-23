@@ -76,7 +76,7 @@ $this->title = 'Saeed_UZ';
 
   <section id="maincontent">
     <div class="container">
-      <marquee behavior="scroll" direction="left"><b style="font-size: 30px; color: red;">Advertising </b><b style="font-size: 30px; color: blue;">Advertising </b><b style="font-size: 30px; color: orange;">Advertising </b><b style="font-size: 30px; color: green;">Advertising </b><b style="font-size: 30px; color: black;">Advertising </b><b style="font-size: 30px; color: grey;">Advertising </b><b style="font-size: 30px; color: зштл;">Advertising </b><b style="font-size: 30px; color: purple;">Advertising </b><b style="font-size: 30px; color: darkred;">Advertising </b><b style="font-size: 30px; color: yellow;">Advertising </b><b style="font-size: 30px; color: darkgreen;">Advertising </b></marquee>
+      <marquee behavior="scroll" direction="left"><b style="font-size: 30px; color: red;">Объявление! Этот сайт работает в тестовом режиме.</b></marquee>
       <div class="row">
         <div class="home-posts">
           <div class="span12">
@@ -86,7 +86,12 @@ $this->title = 'Saeed_UZ';
               <?= osfilesWidget::widget(); ?>
 
           <!--  -->
+
         </div>
+
+      </div>
+      <div style="margin-bottom: 20px;" class="col-md-4 text-center"> 
+          <a href="<?= Url::to(['filessaid/index']) ?>" id="singlebutton" name="singlebutton" class="btn btn-success">Все софты &raquo;</a> 
       </div>
     </div>
   </section>

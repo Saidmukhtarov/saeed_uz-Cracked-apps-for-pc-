@@ -10,6 +10,7 @@ use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use frontend\widgets\blogWidget;
 
 AppAsset::register($this);
 ?>
@@ -51,13 +52,8 @@ AppAsset::register($this);
                 <li class="dropdown">
                   <a style="color: #666;" href="/">Главная</a>
                 </li>
-                <li class="dropdown">
-                  <a style="color: #666;" href="#">Медиа</a>
-                  <ul class="dropdown-menu">
-                    <li><a style="color: #666;" href="#">Для фото и видео монтажеров</a></li>
-                    <li><a style="color: #666;" href="#">Обои</a></li>
-                    <li><a style="color: #666;" href="#">Оформления Windows</a></li>
-                  </ul>
+                <li>
+                  <a style="color: #666;" href="<?= Url::to(['wallpapers/index']) ?>">Обои</a>
                 </li>
                 <li class="dropdown">
                   <a style="color: #666;" href="<?= Url::to(['filessaid/index']); ?>">Проги для ПК</a>
@@ -65,18 +61,16 @@ AppAsset::register($this);
                     <li><a style="color: #666;" href="#">Безопасность</a></li>
                     <li><a style="color: #666;" href="#">Текст</a></li>
                     <li><a style="color: #666;" href="#">Разработка</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a style="color: #666;" href="#">IT-Новости</a>
-                </li>
-                <li class="dropdown">
-                  <a href="#">Другие</a>
-                  <ul class="dropdown-menu">
+                    <li><a style="color: #666;" href="#">Для фото и видео монтажеров</a></li>
                     <li><a style="color: #666;" href="#">Утилиты</a></li>
-                    <li><a style="color: #666;" href="#">Веб-шаблоны</a></li>
-                    <li><a style="color: #666;" href="#">Для улучшения Windows 10</a></li>
+                    <li><a style="color: #666;" href="#">Для улучшения Windows 10</a></li>                                        
                   </ul>
+                </li>
+                <li>
+                  <a style="color: #666;" href="<?= Url::to(['blog/index']) ?>">IT-Блог</a>
+                </li>
+                <li>
+                  <a href="#">Веб-шаблоны</a>
                 </li>
                 <li>
                   <a style="color: #666;" href="<?= Url::to(['site/contact']) ?>">Контакты</a>
@@ -107,10 +101,10 @@ AppAsset::register($this);
             <h5>Менью</h5>
             <ul class="regular">
               <li><a href="/">Главная</a></li>
-              <li><a href="#">Медиа</a></li>
+              <li><a href="<?= Url::to(['wallpapers/index']) ?>">Обои</a></li>
               <li><a href="<?= Url::to(['filessaid/index']); ?>">Проги для ПК</a></li>
-              <li><a href="#">IT-Новости</a></li>
-              <li><a href="#">Другие</a></li>
+              <li><a href="<?= Url::to(['blog/index']) ?>">IT-Блог</a></li>
+              <li><a href="#">Веб-шаблоны</a></li>
               <li><a href="<?= Url::to(['site/contact']) ?>">Контакты</a></li>
             </ul>
           </div>
@@ -119,10 +113,7 @@ AppAsset::register($this);
           <div class="widget">
             <h5>Последние посты в блоге</h5>
             <ul class="regular">
-              <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-              <li><a href="#">Mea malis nominavi insolens ut</a></li>
-              <li><a href="#">Minim timeam has no aperiri sanctus ei mea per pertinax</a></li>
-              <li><a href="#">Te malorum dignissim eos quod sensibus</a></li>
+              <?= blogWidget::widget(['layoutType' => 'footer', 'postCount' => 5]) ?>
             </ul>
           </div>
         </div>

@@ -1,20 +1,20 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use common\models\Wallpapers;
-use common\models\WallpapersSearch;
+use common\models\Blog;
+use common\models\BlogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadFile;
 use yii\web\UploadedFile;
-
+use yii\data\Pagination;
 /**
- * WallpapersController implements the CRUD actions for Wallpapers model.
+ * BlogController implements the CRUD actions for Blog model.
  */
-class WallpapersController extends Controller
+class BlogController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,22 +32,29 @@ class WallpapersController extends Controller
     }
 
     /**
-     * Lists all Wallpapers models.
+     * Lists all Blog models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new WallpapersSearch();
+        $query = Blog::find();
+        $searchModel = new BlogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $countQuery = clone $query;
+        $pagination = new Pagination(['totalCount'=>$countQuery->count(),'pageSize' => 6]);
+        $blog = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'blog' => $blog,
         ]);
     }
 
     /**
-     * Displays a single Wallpapers model.
+     * Displays a single Blog model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,13 +67,13 @@ class WallpapersController extends Controller
     }
 
     /**
-     * Creates a new Wallpapers model.
+     * Creates a new Blog model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     // public function actionCreate()
     // {
-    //     $model = new Wallpapers();
+    //     $model = new Blog();
 
     //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
     //         return $this->redirect(['view', 'id' => $model->id]);
@@ -76,9 +83,9 @@ class WallpapersController extends Controller
     //         'model' => $model,
     //     ]);
     // }
-    public function actionCreate()
+        public function actionCreate()
     {
-        $model = new Wallpapers();
+        $model = new Blog();
 
         
         if ($model->load(Yii::$app->request->post())) {
@@ -93,20 +100,20 @@ class WallpapersController extends Controller
 
             // $model->old_file = "none";
 
-            function uploadWallpaper($wallpaperFieldName,$dbFieldName,$model){
+            function uploadBlogimg($blogimgFieldName,$dbFieldName,$model){
                 $time = time();
-                $wallpaper = UploadedFile::getInstance($model,$wallpaperFieldName);
-                if(!empty($wallpaper)) {
-                    if (!$wallpaper->saveAs('wallpapers/' . $time . '-' . $wallpaperFieldName . '.' . $wallpaper->extension)) {
-                        var_dump($wallpaper->saveAs('wallpapers/' . $time . '-' . $wallpaperFieldName . '.' . $wallpaper->extension));
+                $blog_img = UploadedFile::getInstance($model,$blogimgFieldName);
+                if(!empty($blog_img)) {
+                    if (!$blog_img->saveAs('blog_img/' . $time . '-' . $blogimgFieldName . '.' . $blog_img->extension)) {
+                        var_dump($wallpaper->saveAs('blog_img/' . $time . '-' . $blogimgFieldName . '.' . $blog_img->extension));
                     }
-                    $model->$dbFieldName = $time . '-' . $wallpaperFieldName . '.' . $wallpaper->extension;
+                    $model->$dbFieldName = $time . '-' . $blogimgFieldName . '.' . $blog_img->extension;
                 }
                  else{
                      $model->$dbFieldName = 'default.png';
                  }
             }
-            uploadWallpaper('image', 'image', $model);
+            uploadBlogimg('image', 'image', $model);
 
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -120,62 +127,28 @@ class WallpapersController extends Controller
             'model' => $model,
         ]);
     }
-
     /**
-     * Updates an existing Wallpapers model.
+     * Updates an existing Blog model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    // public function actionUpdate($id)
-    // {
-    //     $model = $this->findModel($id);
-
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'id' => $model->id]);
-    //     }
-
-    //     return $this->render('update', [
-    //         'model' => $model,
-    //     ]);
-    // }
-
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $oldImage = $model->image;
-        if ($model->load(Yii::$app->request->post())) {
-            $time = time();
-            $user = Yii::$app->user->identity->username;
-            $model->updated_at = $time;
-            $model->updated_by = $user;
 
-            $image = UploadedFile::getInstance($model, 'image');
-            if (!empty($image)) {
-                if (!$image->saveAs('wallpapers/' . $time . '.' . $image->extension)) {
-                    var_dump($image->saveAs('wallpapers/' . $time . '.' . $image->extension));
-                }
-                $model->image = $time . '.' . $image->extension;
-            } else {
-                $model->image = $oldImage;
-            }
-
-            if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
-            }else{
-                var_dump($model->errors);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'oldImage' => $oldImage,
         ]);
     }
 
     /**
-     * Deletes an existing Wallpapers model.
+     * Deletes an existing Blog model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -189,15 +162,15 @@ class WallpapersController extends Controller
     }
 
     /**
-     * Finds the Wallpapers model based on its primary key value.
+     * Finds the Blog model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Wallpapers the loaded model
+     * @return Blog the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Wallpapers::findOne($id)) !== null) {
+        if (($model = Blog::findOne($id)) !== null) {
             return $model;
         }
 

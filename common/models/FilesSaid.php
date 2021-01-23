@@ -34,7 +34,7 @@ class FilesSaid extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'os_file', 'created_by', 'updated_by'], 'required'],
+            // [['name', 'description', 'os_file', 'created_by', 'updated_by'], 'required'],
             [['description'], 'string'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],

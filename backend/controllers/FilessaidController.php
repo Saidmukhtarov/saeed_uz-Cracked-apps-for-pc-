@@ -165,13 +165,45 @@ public function actionCreate()
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldImage = $model->image;
+        $oldFile = $model->os_file;
+        if ($model->load(Yii::$app->request->post())) {
+            $time = time();
+            $user = Yii::$app->user->identity->username;
+            $model->updated_at = $time;
+            $model->updated_by = $user;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $image = UploadedFile::getInstance($model, 'image');
+            if (!empty($image)) {
+                if (!$image->saveAs('img/' . $time . '.' . $image->extension)) {
+                    var_dump($image->saveAs('img/' . $time . '.' . $image->extension));
+                }
+                $model->image = $time . '.' . $image->extension;
+            } else {
+                $model->image = $oldImage;
+            }
+
+            $os_file = UploadedFile::getInstance($model, 'os_file');
+            if (!empty($os_file)) {
+                if (!$os_file->saveAs('os_files/' . $time . '.' . $os_file->extension)) {
+                    var_dump($os_file->saveAs('os_files/' . $time . '.' . $os_file->extension));
+                }
+                $model->os_file = $time . '.' . $os_file->extension;
+            } else {
+                $model->os_file = $oldFile;
+            }
+
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                var_dump($model->errors);
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'oldImage' => $oldImage,
+            'oldFile' => $oldFile,
         ]);
     }
 

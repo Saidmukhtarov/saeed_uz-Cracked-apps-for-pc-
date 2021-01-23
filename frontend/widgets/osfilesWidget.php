@@ -6,6 +6,7 @@ use common\models\FilesSaid;
 
 class osfilesWidget extends Widget {
     public $layoutType = 'standart';
+    public $postCount = 8;
 
     public function init()
     {
@@ -13,7 +14,7 @@ class osfilesWidget extends Widget {
     }
     public function run()
     {
-        $osfile = FilesSaid::find()->select('name, image, id, description, os_file, created_at')->orderBy('created_at DESC')->where(['status' => 1])->all();
+        $osfile = FilesSaid::find()->select('name, image, id, description, os_file, created_at')->limit($this->postCount)->orderBy('created_at DESC')->where(['status' => 1])->all();
         if ($this->layoutType == 'standart'){
             $view = 'osfileindex';
             $postCount = 12;

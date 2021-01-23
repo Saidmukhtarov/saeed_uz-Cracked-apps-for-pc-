@@ -41,6 +41,8 @@ AppAsset::register($this);
         ['label' => 'Главная', 'url' => ['/site/index']],
         ['label' => 'Софты', 'url' => ['/filessaid/index']],
         ['label' => 'Обои', 'url' => ['/wallpapers/index']],
+        ['label' => 'IT Блог', 'url' => ['/blog/index']],
+
 
     ];
     if (Yii::$app->user->isGuest) {

@@ -5,24 +5,25 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "wallpapers".
+ * This is the model class for table "blog".
  *
  * @property int $id
- * @property string $name
+ * @property string $title
+ * @property string $body
  * @property string $image
  * @property string $created_at
  * @property string $created_by
  * @property string $updated_at
  * @property string $updated_by
  */
-class Wallpapers extends \yii\db\ActiveRecord
+class Blog extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'wallpapers';
+        return 'blog';
     }
 
     /**
@@ -31,9 +32,10 @@ class Wallpapers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            // [['name', 'image', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
+            // [['title', 'body', 'image', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
+            [['body'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'image', 'created_by', 'updated_by'], 'string', 'max' => 255],
+            [['title', 'image', 'created_by', 'updated_by'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,7 +46,8 @@ class Wallpapers extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'title' => 'Title',
+            'body' => 'Body',
             'image' => 'Image',
             'created_at' => 'Created At',
             'created_by' => 'Created By',

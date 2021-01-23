@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use common\models\Wallpapers;
@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadFile;
 use yii\web\UploadedFile;
+use yii\data\Pagination;
 
 /**
  * WallpapersController implements the CRUD actions for Wallpapers model.
@@ -37,12 +38,19 @@ class WallpapersController extends Controller
      */
     public function actionIndex()
     {
+        $query = Wallpapers::find();
         $searchModel = new WallpapersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $countQuery = clone $query;
+        $pagination = new Pagination(['totalCount'=>$countQuery->count(),'pageSize' => 10]);
+        $wallpapers = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
+            'wallpapers' => $wallpapers,
         ]);
     }
 
@@ -128,49 +136,16 @@ class WallpapersController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    // public function actionUpdate($id)
-    // {
-    //     $model = $this->findModel($id);
-
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'id' => $model->id]);
-    //     }
-
-    //     return $this->render('update', [
-    //         'model' => $model,
-    //     ]);
-    // }
-
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $oldImage = $model->image;
-        if ($model->load(Yii::$app->request->post())) {
-            $time = time();
-            $user = Yii::$app->user->identity->username;
-            $model->updated_at = $time;
-            $model->updated_by = $user;
 
-            $image = UploadedFile::getInstance($model, 'image');
-            if (!empty($image)) {
-                if (!$image->saveAs('wallpapers/' . $time . '.' . $image->extension)) {
-                    var_dump($image->saveAs('wallpapers/' . $time . '.' . $image->extension));
-                }
-                $model->image = $time . '.' . $image->extension;
-            } else {
-                $model->image = $oldImage;
-            }
-
-            if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
-            }else{
-                var_dump($model->errors);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'oldImage' => $oldImage,
         ]);
     }
 

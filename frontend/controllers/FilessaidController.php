@@ -39,17 +39,19 @@ class FilessaidController extends Controller
     public function actionIndex()
     {
         $query = FilesSaid::find()->where(['status' => 1]);
-        $count = $query->count();
         $searchModel = new FilessaidSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $pages = new Pagination(['totalCount' => $count,'pageSize' => 12]);
-        $model = $query->offset($pages->offset)
-            ->limit($pages->limit)
+       
+        $countQuery = clone $query;
+        $pagination = new Pagination(['totalCount'=>$countQuery->count(),'pageSize' => 6]);
+        $os = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
             ->all();
 
         return $this->render('index', [
+            'os' => $os,
             'searchModel' => $searchModel,
-            'pages' => $pages,
+            'pagination' => $pagination,
             'dataProvider' => $dataProvider,
         ]);
     }
