@@ -11,6 +11,9 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use frontend\widgets\blogWidget;
+use common\models\OsCategory;
+use frontend\widgets\oscategoryWidget;
+use frontend\controllers\FilessaidController;
 
 AppAsset::register($this);
 ?>
@@ -58,19 +61,14 @@ AppAsset::register($this);
                 <li class="dropdown">
                   <a style="color: #666;" href="<?= Url::to(['filessaid/index']); ?>">Проги для ПК</a>
                   <ul class="dropdown-menu">
-                    <li><a style="color: #666;" href="#">Безопасность</a></li>
-                    <li><a style="color: #666;" href="#">Текст</a></li>
-                    <li><a style="color: #666;" href="#">Разработка</a></li>
-                    <li><a style="color: #666;" href="#">Для фото и видео монтажеров</a></li>
-                    <li><a style="color: #666;" href="#">Утилиты</a></li>
-                    <li><a style="color: #666;" href="#">Для улучшения Windows 10</a></li>                                        
+                    <?= oscategoryWidget::widget() ?>                                        
                   </ul>
                 </li>
                 <li>
                   <a style="color: #666;" href="<?= Url::to(['blog/index']) ?>">IT-Блог</a>
                 </li>
                 <li>
-                  <a href="#">Веб-шаблоны</a>
+                  <a href="<?= Url::to(['filessaid/category13']) ?>">Веб Шаблоны</a>
                 </li>
                 <li>
                   <a style="color: #666;" href="<?= Url::to(['site/contact']) ?>">Контакты</a>
@@ -104,7 +102,7 @@ AppAsset::register($this);
               <li><a href="<?= Url::to(['wallpapers/index']) ?>">Обои</a></li>
               <li><a href="<?= Url::to(['filessaid/index']); ?>">Проги для ПК</a></li>
               <li><a href="<?= Url::to(['blog/index']) ?>">IT-Блог</a></li>
-              <li><a href="#">Веб-шаблоны</a></li>
+              <li><a href="<?= Url::to(['filessaid/category13']) ?>">Веб Шаблоны</a></li>
               <li><a href="<?= Url::to(['site/contact']) ?>">Контакты</a></li>
             </ul>
           </div>

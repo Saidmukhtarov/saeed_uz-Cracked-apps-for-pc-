@@ -9,7 +9,7 @@ use common\models\FilesSaid;
 /**
  * FilessaidSearch represents the model behind the search form of `common\models\FilesSaid`.
  */
-class FilessaidSearch extends FilesSaid
+class FilessaidSearchCustom extends FilesSaid
 {
     /**
      * {@inheritdoc}
@@ -38,7 +38,7 @@ class FilessaidSearch extends FilesSaid
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $category)
     {
         $query = FilesSaid::find();
 
@@ -59,8 +59,8 @@ class FilessaidSearch extends FilesSaid
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
-            'category' => $this->category,
+            'status' => 1,
+            'category' => $category,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
@@ -68,6 +68,7 @@ class FilessaidSearch extends FilesSaid
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'os_file', $this->os_file])
+            ->andFilterWhere(['like', 'image', $this->image])
             ->andFilterWhere(['like', 'category', $this->os_file])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by]);

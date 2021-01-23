@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\FilesSaid */
 
 $this->title = 'Редактировать софт: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Files Saids', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Софты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Редактировать';
 ?>
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = 'Редактировать';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'oscatList' => $oscatList,
     ]) ?>
 
 </div>

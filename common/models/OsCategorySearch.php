@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\FilesSaid;
+use common\models\OsCategory;
 
 /**
- * FilessaidSearch represents the model behind the search form of `common\models\FilesSaid`.
+ * OsCategorySearch represents the model behind the search form of `common\models\OsCategory`.
  */
-class FilessaidSearch extends FilesSaid
+class OsCategorySearch extends OsCategory
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class FilessaidSearch extends FilesSaid
     {
         return [
             [['id', 'status'], 'integer'],
-            [['name', 'description', 'os_file', 'category', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'safe'],
+            [['title', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class FilessaidSearch extends FilesSaid
      */
     public function search($params)
     {
-        $query = FilesSaid::find();
+        $query = OsCategory::find();
 
         // add conditions that should always apply here
 
@@ -60,16 +60,12 @@ class FilessaidSearch extends FilesSaid
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'category' => $this->category,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'os_file', $this->os_file])
-            ->andFilterWhere(['like', 'category', $this->os_file])
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'created_at', $this->created_at])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
+            ->andFilterWhere(['like', 'updated_at', $this->updated_at])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
 
         return $dataProvider;

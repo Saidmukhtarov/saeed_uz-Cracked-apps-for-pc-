@@ -1,20 +1,18 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use Yii;
-use common\models\Blog;
-use common\models\BlogSearch;
+use common\models\OsCategory;
+use common\models\OsCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadFile;
-use yii\web\UploadedFile;
-use yii\data\Pagination;
+
 /**
- * BlogController implements the CRUD actions for Blog model.
+ * OscategoryController implements the CRUD actions for OsCategory model.
  */
-class BlogController extends Controller
+class OscategoryController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,30 +30,22 @@ class BlogController extends Controller
     }
 
     /**
-     * Lists all Blog models.
+     * Lists all OsCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $query = Blog::find();
-        $searchModel = new BlogSearch();
+        $searchModel = new OsCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $countQuery = clone $query;
-        $pagination = new Pagination(['totalCount'=>$countQuery->count(),'pageSize' => 6]);
-        $blog = $query->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->orderBy('created_at DESC')
-            ->all();
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'pagination' => $pagination,
-            'blog' => $blog,
         ]);
     }
 
     /**
-     * Displays a single Blog model.
+     * Displays a single OsCategory model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -68,27 +58,18 @@ class BlogController extends Controller
     }
 
     /**
-     * Creates a new Blog model.
+     * Creates a new OsCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    // public function actionCreate()
-    // {
-    //     $model = new Blog();
-
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'id' => $model->id]);
-    //     }
-
-    //     return $this->render('create', [
-    //         'model' => $model,
-    //     ]);
-    // }
-        public function actionCreate()
+    public function actionCreate()
     {
-        $model = new Blog();
+        $model = new OsCategory();
 
-        
+        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        //     return $this->redirect(['view', 'id' => $model->id]);
+        // }
         if ($model->load(Yii::$app->request->post())) {
             $time = time();
             $user = Yii::$app->user->identity->username;
@@ -98,23 +79,6 @@ class BlogController extends Controller
 
             $model->created_by = $user;
             $model->updated_by = $user;
-
-            // $model->old_file = "none";
-
-            function uploadBlogimg($blogimgFieldName,$dbFieldName,$model){
-                $time = time();
-                $blog_img = UploadedFile::getInstance($model,$blogimgFieldName);
-                if(!empty($blog_img)) {
-                    if (!$blog_img->saveAs('blog_img/' . $time . '-' . $blogimgFieldName . '.' . $blog_img->extension)) {
-                        var_dump($wallpaper->saveAs('blog_img/' . $time . '-' . $blogimgFieldName . '.' . $blog_img->extension));
-                    }
-                    $model->$dbFieldName = $time . '-' . $blogimgFieldName . '.' . $blog_img->extension;
-                }
-                 else{
-                     $model->$dbFieldName = 'default.png';
-                 }
-            }
-            uploadBlogimg('image', 'image', $model);
 
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -128,8 +92,9 @@ class BlogController extends Controller
             'model' => $model,
         ]);
     }
+
     /**
-     * Updates an existing Blog model.
+     * Updates an existing OsCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -149,7 +114,7 @@ class BlogController extends Controller
     }
 
     /**
-     * Deletes an existing Blog model.
+     * Deletes an existing OsCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -163,15 +128,15 @@ class BlogController extends Controller
     }
 
     /**
-     * Finds the Blog model based on its primary key value.
+     * Finds the OsCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Blog the loaded model
+     * @return OsCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Blog::findOne($id)) !== null) {
+        if (($model = OsCategory::findOne($id)) !== null) {
             return $model;
         }
 

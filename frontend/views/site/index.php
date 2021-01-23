@@ -34,7 +34,6 @@ $this->title = 'Saeed_UZ';
                       <p>
                         Цсссс про версии каждого приложения
                       </p>
-                      <a  class="btn btn-success" href="<?= Url::to(['filessaid/index']) ?>">Подробнее &raquo;</a>
                     </div>
                     <img class="slider_img animate-in" src="assets1/ico/favicon.png" alt="">
                   </li>

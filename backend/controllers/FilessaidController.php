@@ -5,10 +5,12 @@ namespace backend\controllers;
 use Yii;
 use common\models\FilesSaid;
 use common\models\FilessaidSearch;
+use common\models\OsCategory;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadFile;
+use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 
 /**
@@ -84,21 +86,11 @@ class FilessaidController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    // public function actionCreate()
-    // {
-    //     $model = new FilesSaid();
-
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'id' => $model->id]);
-    //     }
-        
-    //     return $this->render('create', [
-    //         'model' => $model,
-    //     ]);
-    // }
 public function actionCreate()
     {
         $model = new FilesSaid();
+        $oscat = OsCategory::find()->all();
+        $oscatList = ArrayHelper::map($oscat, 'id', 'title');
 
         
         if ($model->load(Yii::$app->request->post())) {
@@ -153,6 +145,7 @@ public function actionCreate()
 
         return $this->render('create', [
             'model' => $model,
+            'oscatList' => $oscatList,
         ]);
     }
     /**
@@ -165,6 +158,8 @@ public function actionCreate()
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oscat = OsCategory::find()->all();
+        $oscatList = ArrayHelper::map($oscat, 'id', 'title');
         $oldImage = $model->image;
         $oldFile = $model->os_file;
         if ($model->load(Yii::$app->request->post())) {
@@ -202,6 +197,7 @@ public function actionCreate()
 
         return $this->render('update', [
             'model' => $model,
+            'oscatList' => $oscatList,
             'oldImage' => $oldImage,
             'oldFile' => $oldFile,
         ]);

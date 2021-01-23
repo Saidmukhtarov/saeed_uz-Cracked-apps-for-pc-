@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6])->label('Описания софта') ?>
 
+    <?= $form->field($model, 'category')->dropDownList($oscatList)->label('Категория') ?>
+
     <?= $form->field($model, 'os_file')->fileInput()->label('Софт для компа') ?>
 
     <?= $form->field($model, 'image')->fileInput()->label('Рисунок софта') ?>

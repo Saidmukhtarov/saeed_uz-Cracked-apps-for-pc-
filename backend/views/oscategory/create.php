@@ -3,19 +3,18 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\FilesSaid */
+/* @var $model common\models\OsCategory */
 
-$this->title = 'Добавления софта';
-$this->params['breadcrumbs'][] = ['label' => 'Софт', 'url' => ['index']];
+$this->title = 'Создать новый';
+$this->params['breadcrumbs'][] = ['label' => 'Категории софта', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="files-said-create">
+<div class="os-category-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-        'oscatList' => $oscatList,
     ]) ?>
 
 </div>

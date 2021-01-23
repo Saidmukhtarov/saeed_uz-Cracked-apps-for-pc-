@@ -82,19 +82,16 @@ $this->title = $model->name;
         <div class="span4">
           <aside>
             <div class="widget">
-              <form class="form-search">
-                <input placeholder="Введите что-либо" type="text" class="input-medium search-query">
-                <button type="submit" class="btn btn-flat btn-color" style="color: #666;">Поиск</button>
-              </form>
-            </div>
-            <div class="widget">
               <h4>Categories</h4>
               <ul class="cat">
-                <li><a href="#">Web design (114)</a></li>
-                <li><a href="#">Internet news (15)</a></li>
-                <li><a href="#">Tutorial and tips (20)</a></li>
-                <li><a href="#">Design trends (15)</a></li>
-                <li><a href="#">Online business (10)</a></li>
+                <li><a href="<?= Url::to(['filessaid/category7']) ?>">Для фото и видео монтажеров</a></li>
+                <li><a href="<?= Url::to(['filessaid/category8']) ?>">Оформления Windows</a></li>
+                <li><a href="<?= Url::to(['filessaid/category9']) ?>">Безопасность</a></li>
+                <li><a href="<?= Url::to(['filessaid/category10']) ?>">Текст</a></li>
+                <li><a href="<?= Url::to(['filessaid/category11']) ?>">Web Разработка</a></li>
+                <li><a href="<?= Url::to(['filessaid/category12']) ?>">Утилиты</a></li>
+                <li><a href="<?= Url::to(['filessaid/category13']) ?>">Веб Шаблоны</a></li>
+                <li><a href="<?= Url::to(['filessaid/category14']) ?>">Другие</a></li>
               </ul>
             </div>
             <div class="widget">

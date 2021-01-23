@@ -4,14 +4,13 @@ use yii\grid\GridView;
 
 use yii\widgets\LinkPager;
 use yii\bootstrap4\ActiveForm;
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\models\FilesSaid;
 use common\models\Blog;
 use common\models\OsCategory;
+use frontend\widgets\category7;
 use frontend\widgets\blogWidget;
-use frontend\widgets\SearchWidget;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ProductSearch */
@@ -26,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
           <div class="span12">
             <div class="centered">
-              <h3 style="color: #666;">Все софты</h3>
+              <h3 style="color: #666;">Для фото и видео монтажеров</h3>
             </div>
           </div>
         </div>
@@ -38,34 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="row">
         <div class="span8">
           <!-- start article 1 -->
-          <?php foreach($os as $osfile): ?>
-<article class="blog-post">
-            <div class="post-heading">
-              <h3><a href="<?= Url::to(['filessaid/view', 'id' => $osfile->id]) ?>"><?= $osfile->name; ?></a></h3>
-            </div>
-            <div class="row">
-              <div class="span3">
-                <div class="post-image">
-                  <a href="<?= Url::to(['filessaid/view', 'id' => $osfile->id]) ?>"><img src="<?= '/img/' . $osfile->image; ?>" alt="<?= $osfile->name; ?>" /></a>
-                </div>
-              </div>
-              <div class="span5">
-                <ul class="post-meta">
-                  <li class="first"><i class="icon-calendar"></i><span><?= date('d/M/Y H:i:s', $osfile->created_at) ?></span></li>
-                  <li><i class="icon-list-alt"></i><span><a href="#">Comments</a></span></li>
-                  <li class="last"><i class="icon-tags"></i><span><a href="#"><?= $osfile->categoryt->title ?></a></span></li>
-                </ul>
-                <div class="clearfix">
-                </div>
-                <p>
-                  <?= mb_substr($osfile->description, 0, 300) . ' ...' ?>
-                </p>
-                            <a class="btn btn-success pull-right" href="<?= Url::to(['filessaid/view', 'id' => $osfile->id]) ?>">Читать больше &raquo;</a>
-
-              </div>
-            </div>
-          </article>
-<?php endforeach; ?>
+          <?= category7::widget() ?>
           <!-- end article 1 -->
           <div class="pagination">
             <!-- <ul>
@@ -76,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
               <li><a href="#">4</a></li>
               <li><a href="#">Next</a></li>
             </ul> -->
-            <?= LinkPager::widget(['pagination' => $pagination]) ?>
+            <?php //echo LinkPager::widget(['pagination' => $pagination]) ?>
           </div>
         </div>
         <div class="span4">

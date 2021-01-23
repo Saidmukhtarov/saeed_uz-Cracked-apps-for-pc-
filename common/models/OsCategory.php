@@ -3,31 +3,26 @@
 namespace common\models;
 
 use Yii;
-use common\models\OsCategory;
 
 /**
- * This is the model class for table "files_said".
+ * This is the model class for table "os_category".
  *
  * @property int $id
- * @property string $name
- * @property string $description
- * @property string $os_file
- * @property string $image
+ * @property string $title
  * @property int $status
- * @property string $category
  * @property string $created_at
  * @property string $created_by
  * @property string $updated_at
  * @property string $updated_by
  */
-class FilesSaid extends \yii\db\ActiveRecord
+class OsCategory extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'files_said';
+        return 'os_category';
     }
 
     /**
@@ -36,11 +31,10 @@ class FilesSaid extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            // [['name', 'description', 'os_file', 'created_by', 'updated_by'], 'required'],
-            [['description'], 'string'],
+            // [['title', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'os_file', 'image', 'created_by', 'category', 'updated_by'], 'string', 'max' => 255],
+            [['title', 'created_by', 'updated_by'], 'string', 'max' => 255],
         ];
     }
 
@@ -51,19 +45,12 @@ class FilesSaid extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'category' => 'Category',
-            'os_file' => 'Os File',
-            'image' => 'Image',
+            'title' => 'Title',
             'status' => 'Status',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
-    }
-    public function  getCategoryt(){
-        return $this->hasOne(OsCategory::class,['id' => 'category'])->where(['status'=>1]);
     }
 }

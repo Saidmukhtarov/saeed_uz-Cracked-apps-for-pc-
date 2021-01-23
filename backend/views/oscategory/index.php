@@ -2,58 +2,33 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\FilessaidSearch */
+/* @var $searchModel common\models\OsCategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Софты';
+$this->title = 'Категории софта';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="files-said-index">
+<div class="os-category-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Добавить софт', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать новый', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'name',
-            //'description:ntext',
-            [
-                'label' => 'Описания софта',
-                'value' => function($model){
-                    $description = substr($model->description, 0, 20) . '...';
-                    return $description;
-                }
-
-
-            ],
-            'os_file',
-            [
-                'label' => 'Категория',
-                'value' => function($model){
-                    $cat = \common\models\OsCategory::find()->select('title')->where(['status' => 1,'id' => $model->category])->one();
-                        return $cat['title'];
-                    }
-            ],
-            [
-                'attribute' => 'Изображение софта',
-                'format' => 'raw',
-                'value' => function($model){
-                    $img = "<img src='/img/$model->image' style='max-width: 100%;'>";
-                    return $img;
-                }
-            ],
+            'title',
             [
                 'label' => 'Статус:',
                 'value' => function($model){
@@ -63,14 +38,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     elseif ($model->status == 1){
                         return 'Активен';
                     }
+                    elseif ($model->status == 3){
+                        return 'Удалён';
+                    }
                     else{
                         return 'Неизвестно';
                     }
                 }
             ],
-            // 'status',
-            //'created_at',
-            //'created_by',
+            // 'created_at',
+            // 'created_by',
             //'updated_at',
             //'updated_by',
 
@@ -93,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('app', 'Удалить'),
                             'class' => 'btn btn-danger',
                             'data' => [
-                                'confirm' => 'Вы уверены что хотите удалить этот софт?',
+                                'confirm' => 'Вы уверены что хотите удалить этот пост?',
                                 'method' => 'post',
                             ],
                         ]);
@@ -103,5 +80,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <?php Pjax::end(); ?>
 
 </div>
