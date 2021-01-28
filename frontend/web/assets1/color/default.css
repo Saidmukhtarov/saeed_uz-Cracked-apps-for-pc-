@@ -1,12 +1,12 @@
 ::-moz-selection {
   background: #ceeaff;
   color: #fff;
-  text-shadow: none;
+  text-shadow: 5px;
 }
 ::selection {
   background: #ceeaff;
   color: #fff;
-  text-shadow: none;
+  text-shadow: 5px;
 }
 
 

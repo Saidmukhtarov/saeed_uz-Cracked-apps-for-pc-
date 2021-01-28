@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="clearfix">
             </div>
             <p>
-              <?= $model->body ?>
+              <?= $model->body; ?>
             </p>
           </article>
           <!-- end article full post -->
@@ -152,14 +152,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="widget">
               <h4>Categories</h4>
               <ul class="cat">
-                <li><a href="<?= Url::to(['filessaid/category7']) ?>">Для фото и видео монтажеров</a></li>
-                <li><a href="<?= Url::to(['filessaid/category8']) ?>">Оформления Windows</a></li>
-                <li><a href="<?= Url::to(['filessaid/category9']) ?>">Безопасность</a></li>
-                <li><a href="<?= Url::to(['filessaid/category10']) ?>">Текст</a></li>
-                <li><a href="<?= Url::to(['filessaid/category11']) ?>">Web Разработка</a></li>
-                <li><a href="<?= Url::to(['filessaid/category12']) ?>">Утилиты</a></li>
-                <li><a href="<?= Url::to(['filessaid/category13']) ?>">Веб Шаблоны</a></li>
-                <li><a href="<?= Url::to(['filessaid/category14']) ?>">Другие</a></li>
+                <?php foreach ($categories as $single_category):?>
+                      <li><a href="<?= Url::to(['filessaid/category-def', 'cat_id' => $single_category->id]) ?>"><?=$single_category->title.' ('.$single_category->filecount?>)</a></li>
+                  <?php endforeach;?>
               </ul>
             </div>
             <div class="widget">

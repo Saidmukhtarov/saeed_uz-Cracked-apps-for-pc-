@@ -45,7 +45,7 @@ $this->title = $model->name;
             <a style="font-weight: bolder;" class="btn btn-success" href="<?= Url::to(['filessaid/download/' . $model->id]) ?>">Скачать &DownArrowBar;</a>
           </article>
           <!-- end article full post -->
-          <h4>Comments</h4>
+          <h4>Комментарии</h4>
           <ul class="media-list">
             <li class="media">
               <div class="media-body">
@@ -84,14 +84,9 @@ $this->title = $model->name;
             <div class="widget">
               <h4>Categories</h4>
               <ul class="cat">
-                <li><a href="<?= Url::to(['filessaid/category7']) ?>">Для фото и видео монтажеров</a></li>
-                <li><a href="<?= Url::to(['filessaid/category8']) ?>">Оформления Windows</a></li>
-                <li><a href="<?= Url::to(['filessaid/category9']) ?>">Безопасность</a></li>
-                <li><a href="<?= Url::to(['filessaid/category10']) ?>">Текст</a></li>
-                <li><a href="<?= Url::to(['filessaid/category11']) ?>">Web Разработка</a></li>
-                <li><a href="<?= Url::to(['filessaid/category12']) ?>">Утилиты</a></li>
-                <li><a href="<?= Url::to(['filessaid/category13']) ?>">Веб Шаблоны</a></li>
-                <li><a href="<?= Url::to(['filessaid/category14']) ?>">Другие</a></li>
+                <?php foreach ($categories as $single_category):?>
+                      <li><a href="<?= Url::to(['filessaid/category-def', 'cat_id' => $single_category->id]) ?>"><?=$single_category->title.' ('.$single_category->filecount?>)</a></li>
+                  <?php endforeach;?>
               </ul>
             </div>
             <div class="widget">

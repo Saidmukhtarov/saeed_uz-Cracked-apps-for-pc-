@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <ul class="post-meta">
                   <li class="first"><i class="icon-calendar"></i><span><?= date('d/M/Y H:i:s', $osfile->created_at) ?></span></li>
                   <li><i class="icon-list-alt"></i><span><a href="#">Comments</a></span></li>
-                  <li class="last"><i class="icon-tags"></i><span><a href="#"><?= $osfile->categoryt->title ?></a></span></li>
+                  <li class="last"><i class="icon-tags"></i><span><a href="<?= Url::to(['filessaid/category-def?cat_id=' . $osfile->category]) ?>"><?= $osfile->categoryt->title ?></a></span></li>
                 </ul>
                 <div class="clearfix">
                 </div>
@@ -82,16 +82,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="span4">
           <aside>
             <div class="widget">
-              <h4>Categories</h4>
+              <h4>Категории</h4>
               <ul class="cat">
-                <li><a href="<?= Url::to(['filessaid/category7']) ?>">Для фото и видео монтажеров</a></li>
-                <li><a href="<?= Url::to(['filessaid/category8']) ?>">Оформления Windows</a></li>
-                <li><a href="<?= Url::to(['filessaid/category9']) ?>">Безопасность</a></li>
-                <li><a href="<?= Url::to(['filessaid/category10']) ?>">Текст</a></li>
-                <li><a href="<?= Url::to(['filessaid/category11']) ?>">Web Разработка</a></li>
-                <li><a href="<?= Url::to(['filessaid/category12']) ?>">Утилиты</a></li>
-                <li><a href="<?= Url::to(['filessaid/category13']) ?>">Веб Шаблоны</a></li>
-                <li><a href="<?= Url::to(['filessaid/category14']) ?>">Другие</a></li>
+                <?php foreach ($categories as $single_category):?>
+                      <li><a href="<?= Url::to(['filessaid/category-def', 'cat_id' => $single_category->id]) ?>"><?=$single_category->title.' ('.$single_category->filecount?>)</a></li>
+                  <?php endforeach;?>
               </ul>
             </div>
             <div class="widget">

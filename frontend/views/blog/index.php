@@ -60,17 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
               </div>
             </div>
           </article>
-<?php endforeach; ?>
+          <?php endforeach; ?>
           <!-- end article 1 -->
           <div class="pagination">
-            <!-- <ul>
-              <li><a href="#">Prev</a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">Next</a></li>
-            </ul> -->
             <?= LinkPager::widget(['pagination' => $pagination]) ?>
           </div>
         </div>
@@ -79,14 +71,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="widget">
               <h4>Categories</h4>
               <ul class="cat">
-                <li><a href="<?= Url::to(['filessaid/category7']) ?>">Для фото и видео монтажеров</a></li>
-                <li><a href="<?= Url::to(['filessaid/category8']) ?>">Оформления Windows</a></li>
-                <li><a href="<?= Url::to(['filessaid/category9']) ?>">Безопасность</a></li>
-                <li><a href="<?= Url::to(['filessaid/category10']) ?>">Текст</a></li>
-                <li><a href="<?= Url::to(['filessaid/category11']) ?>">Web Разработка</a></li>
-                <li><a href="<?= Url::to(['filessaid/category12']) ?>">Утилиты</a></li>
-                <li><a href="<?= Url::to(['filessaid/category13']) ?>">Веб Шаблоны</a></li>
-                <li><a href="<?= Url::to(['filessaid/category14']) ?>">Другие</a></li>
+                <?php foreach ($categories as $single_category):?>
+                      <li><a href="<?= Url::to(['filessaid/category-def', 'cat_id' => $single_category->id]) ?>"><?=$single_category->title.' ('.$single_category->filecount?>)</a></li>
+                  <?php endforeach;?>
               </ul>
             </div>
             <div class="widget">

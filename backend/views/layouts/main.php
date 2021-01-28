@@ -39,21 +39,18 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Главная', 'url' => ['/site/index']],
-        // ['label' => 'Софты', 'url' => ['/filessaid/index']],
-        // ['label' => 'Софты', 'url' => ['/oscategory/index']],
         [
-                'label' => 'Софты',
-                'url' => ['filessaid/index'],
-                'items' =>
+            'label' => 'Софты',
+            'url' => ['filessaid/index'],
+            'items' =>
                     [
                         ['label' => 'Софты', 'url' => ['/filessaid/index']],
                         ['label' => 'Категории cофтa', 'url' => ['/oscategory/index']],
                     ]
-            ],
+        ],
         ['label' => 'Обои', 'url' => ['/wallpapers/index']],
         ['label' => 'IT Блог', 'url' => ['/blog/index']],
-
-
+        ['label' => 'Комменты', 'url' => ['/oscomments/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login'], 'style' => 'color:lightblue'];

@@ -33,10 +33,6 @@ class FilessaidController extends Controller
         ];
     }
 
-    /**
-     * Lists all FilesSaid models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new FilessaidSearch();
@@ -48,12 +44,6 @@ class FilessaidController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single FilesSaid model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -68,25 +58,7 @@ class FilessaidController extends Controller
         return Yii::$app->response->sendFile($file); 
     }
 
-
-
-    // public function actionDownload($id)
-    // {
-    //     $data = FilesSaid::findOne($id);
-    //     header('Content-Type:'.pathinfo($data->filepath, PATHINFO_EXTENSION));
-    //     header('Content-Disposition: attachment; filename=' . $data->filename);
-    //     return readfile($data->filepath);
-    // }
-
-
-
-
-    /**
-     * Creates a new FilesSaid model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-public function actionCreate()
+    public function actionCreate()
     {
         $model = new FilesSaid();
         $oscat = OsCategory::find()->all();
@@ -114,9 +86,6 @@ public function actionCreate()
                     }
                     $model->$dbFieldName = $time . '-' . $os_fileFieldName . '.' . $osfile->extension;
                 }
-                // else{
-                //     $model->$dbFieldName = 'default.jpg';
-                // }
             }
 
             function uploadImage($imageFieldName,$dbFieldName,$model){
@@ -148,13 +117,7 @@ public function actionCreate()
             'oscatList' => $oscatList,
         ]);
     }
-    /**
-     * Updates an existing FilesSaid model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -203,13 +166,6 @@ public function actionCreate()
         ]);
     }
 
-    /**
-     * Deletes an existing FilesSaid model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -217,13 +173,7 @@ public function actionCreate()
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the FilesSaid model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return FilesSaid the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = FilesSaid::findOne($id)) !== null) {

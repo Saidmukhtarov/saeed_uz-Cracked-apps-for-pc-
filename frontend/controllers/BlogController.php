@@ -7,6 +7,8 @@ use common\models\Blog;
 use common\models\BlogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use common\models\FilesSaid;
+use common\models\OsCategory;
 use yii\filters\VerbFilter;
 use yii\web\UploadFile;
 use yii\web\UploadedFile;
@@ -35,7 +37,7 @@ class BlogController extends Controller
      * Lists all Blog models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($cat_id = null)
     {
         $query = Blog::find();
         $searchModel = new BlogSearch();
@@ -46,11 +48,15 @@ class BlogController extends Controller
             ->limit($pagination->limit)
             ->orderBy('created_at DESC')
             ->all();
+        $category = FilesSaid::find()->select('name, image, id, description, os_file, created_at')->orderBy('created_at DESC')->where(['status' => 1])->where(['category' => $cat_id])->all();
+        $categories = OsCategory::find()->where(['status' =>1])->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'pagination' => $pagination,
             'blog' => $blog,
+            'category_object' => $category,
+            'categories' => $categories,
         ]);
     }
 
@@ -60,10 +66,14 @@ class BlogController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $cat_id = null)
     {
+        $category = FilesSaid::find()->select('name, image, id, description, os_file, created_at')->orderBy('created_at DESC')->where(['status' => 1])->where(['category' => $cat_id])->all();
+        $categories = OsCategory::find()->where(['status' =>1])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'category_object' => $category,
+            'categories' => $categories,
         ]);
     }
 

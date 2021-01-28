@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use common\models\OsCategory;
+use common\models\OsComments;
 
 /**
  * This is the model class for table "files_said".
@@ -15,6 +16,7 @@ use common\models\OsCategory;
  * @property string $image
  * @property int $status
  * @property string $category
+ * @property string $comments
  * @property string $created_at
  * @property string $created_by
  * @property string $updated_at
@@ -40,7 +42,7 @@ class FilesSaid extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'os_file', 'image', 'created_by', 'category', 'updated_by'], 'string', 'max' => 255],
+            [['name', 'os_file', 'image', 'created_by', 'category', 'comments', 'updated_by'], 'string', 'max' => 255],
         ];
     }
 
@@ -54,6 +56,7 @@ class FilesSaid extends \yii\db\ActiveRecord
             'name' => 'Name',
             'description' => 'Description',
             'category' => 'Category',
+            'comments' => 'Comments',
             'os_file' => 'Os File',
             'image' => 'Image',
             'status' => 'Status',
@@ -65,5 +68,8 @@ class FilesSaid extends \yii\db\ActiveRecord
     }
     public function  getCategoryt(){
         return $this->hasOne(OsCategory::class,['id' => 'category'])->where(['status'=>1]);
+    }
+    public function  getCommentst(){
+        return $this->hasOne(OsComments::class,['id' => 'comments'])->where(['status'=>1]);
     }
 }

@@ -53,4 +53,9 @@ class OsCategory extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
         ];
     }
+
+    public function  getFilecount(){
+        return $this->hasMany(FilesSaid::class, ['category' => 'id'])->where(['status'=>1])->count();
+    }
+
 }

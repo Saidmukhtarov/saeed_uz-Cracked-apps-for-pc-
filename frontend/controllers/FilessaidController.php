@@ -37,11 +37,13 @@ class FilessaidController extends Controller
      * Lists all FilesSaid models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($cat_id = null)
     {
         $query = FilesSaid::find()->where(['status' => 1]);
         $searchModel = new FilessaidSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $category = FilesSaid::find()->select('name, image, id, description, os_file, created_at')->orderBy('created_at DESC')->where(['status' => 1])->where(['category' => $cat_id])->all();
+        $categories = OsCategory::find()->where(['status' =>1])->all();
         $countQuery = clone $query;
         $pagination = new Pagination(['totalCount'=>$countQuery->count(),'pageSize' => 6]);
         $os = $query->offset($pagination->offset)
@@ -49,6 +51,8 @@ class FilessaidController extends Controller
             ->all();
 
         return $this->render('index', [
+            'category_object' => $category,
+            'categories' => $categories,
             'os' => $os,
             'searchModel' => $searchModel,
             'pagination' => $pagination,
@@ -62,10 +66,14 @@ class FilessaidController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $cat_id = null)
     {
+        $category = FilesSaid::find()->select('name, image, id, description, os_file, created_at')->orderBy('created_at DESC')->where(['status' => 1])->where(['category' => $cat_id])->all();
+        $categories = OsCategory::find()->where(['status' =>1])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'category_object' => $category,
+            'categories' => $categories,
         ]);
     }
 
@@ -76,37 +84,14 @@ class FilessaidController extends Controller
         return Yii::$app->response->sendFile($file); 
     }
 
-    public function actionCategory7()
+    public function actionCategoryDef($cat_id = null)
     {
-        return $this->render('category7');
-    }
-    public function actionCategory8()
-    {
-        return $this->render('category8');
-    }
-    public function actionCategory9()
-    {
-        return $this->render('category9');
-    }
-    public function actionCategory10()
-    {
-        return $this->render('category10');
-    }
-    public function actionCategory11()
-    {
-        return $this->render('category11');
-    }
-    public function actionCategory12()
-    {
-        return $this->render('category12');
-    }
-    public function actionCategory13()
-    {
-        return $this->render('category13');
-    }
-    public function actionCategory14()
-    {
-        return $this->render('category14');
+        $category = FilesSaid::find()->select('name, image, category, id, description, os_file, created_at')->orderBy('created_at DESC')->where(['status' => 1])->where(['category' => $cat_id])->all();
+        $categories = OsCategory::find()->where(['status' =>1])->all();
+        return $this->render('category_def', [
+            'category_object' => $category,
+            'categories' => $categories
+        ]);
     }
 
     /**
